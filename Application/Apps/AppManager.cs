@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace KappaLauncher.Application.Apps {
     public static class AppManager {
@@ -17,7 +9,6 @@ namespace KappaLauncher.Application.Apps {
         private static PackageManager Manager;
         public static void Init(Context context) {
             Manager = context.PackageManager;
-
         }
 
 
@@ -28,9 +19,9 @@ namespace KappaLauncher.Application.Apps {
 
 
         public class App {
-            public String Package { get; private set; }
-            public String Activity { get; private set; }
-            public String Name { get; private set; }
+            public string Package { get; private set; }
+            public string Activity { get; private set; }
+            public string Name { get; private set; }
             public long InstallTime { get; private set; }
 
 
