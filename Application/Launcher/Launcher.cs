@@ -32,13 +32,18 @@ namespace KappaLauncher.Application.Launcher {
             Main.Orientation = Orientation.Vertical;
             Scroll.AddView(Main);
         }
-
-
-
         public static void Show(Activity activity) {
             ViewGroup parentGroup = (ViewGroup) Parent.Parent;
             if (parentGroup != null) parentGroup.RemoveView(Parent);
             activity.SetContentView(Parent);
+        }
+
+        public static void Load() {
+
+        }
+
+        public static void Save() {
+
         }
     }
 }
