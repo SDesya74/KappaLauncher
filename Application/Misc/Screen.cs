@@ -5,6 +5,7 @@ using Android.Content.Res;
 using Android.Graphics;
 using Android.Util;
 using Android.Views;
+using Java.Interop;
 
 namespace KappaLauncher.Misc {
     public static class Screen {
@@ -23,7 +24,7 @@ namespace KappaLauncher.Misc {
             return (int) Math.Floor(dip * Scale);
         }
         public static void Init(Context context) {
-            IWindowManager wm = (IWindowManager) context.GetSystemService(Context.WindowService);
+            IWindowManager wm = context.GetSystemService(Context.WindowService).JavaCast<IWindowManager>(); ;
 
             Display display = wm.DefaultDisplay;
             DisplayMetrics metrics = new DisplayMetrics();
