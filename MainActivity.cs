@@ -4,6 +4,7 @@ using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
 using KappaLauncher.Application.Launcher;
+using KappaLauncher.Misc;
 
 namespace KappaLauncher
 {
@@ -14,7 +15,10 @@ namespace KappaLauncher
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            Screen.Init(this);
             Launcher.Show(this);
+            Launcher.Load();
         }
 
 

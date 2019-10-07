@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Application\Apps\AppManager.cs" />
     <Compile Include="Application\Launcher\Launcher.cs" />
+    <Compile Include="Application\Misc\DataSaver.cs" />
     <Compile Include="Application\Misc\Screen.cs" />
     <Compile Include="LauncherApplication.cs" />
     <Compile Include="MainActivity.cs" />
