@@ -15,31 +15,32 @@ using Android.Widget;
 
 namespace KappaLauncher.Application.Misc {
     class DataSaver {
-        private static string Path;
+        private static string InternalStorage;
         public static void Init(Context context) {
-            Path = context.FilesDir.ToString();
+            InternalStorage = context.FilesDir.ToString();
         }
-
-
 
         public static void Save(string name, object data) {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(Path + name,
+            Stream stream = new FileStream(Path.Combine(InternalStorage, name),
                                            FileMode.Create,
                                            FileAccess.Write,
                                            FileShare.None);
             formatter.Serialize(stream, data);
             stream.Close();
         }
-        public static object Load(string name) {
+        public static object Read(string name) {
             IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(Path + name,
+            Stream stream = new FileStream(Path.Combine(InternalStorage, name),
                                            FileMode.Open,
                                            FileAccess.Read,
                                            FileShare.Read);
             object result = formatter.Deserialize(stream);
             stream.Close();
             return result;
+        }
+        public static void Delete(string name) {
+            File.Delete(Path.Combine(InternalStorage, name));
         }
     }
 }
