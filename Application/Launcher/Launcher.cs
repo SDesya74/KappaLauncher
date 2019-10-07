@@ -34,7 +34,7 @@ namespace KappaLauncher.Application.Launcher {
         }
         public static void Show(Activity activity) {
             ViewGroup parentGroup = (ViewGroup) Parent.Parent;
-            if (parentGroup != null) parentGroup.RemoveView(Parent);
+            parentGroup?.RemoveView(Parent);
             activity.SetContentView(Parent);
         }
 
