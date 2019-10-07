@@ -30,14 +30,18 @@ namespace KappaLauncher.Application.Misc {
             stream.Close();
         }
         public static object Read(string name) {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(Path.Combine(InternalStorage, name),
-                                           FileMode.Open,
-                                           FileAccess.Read,
-                                           FileShare.Read);
-            object result = formatter.Deserialize(stream);
-            stream.Close();
-            return result;
+            try {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream(Path.Combine(InternalStorage, name),
+                                               FileMode.Open,
+                                               FileAccess.Read,
+                                               FileShare.Read);
+                object result = formatter.Deserialize(stream);
+                stream.Close();
+                return result;
+            } catch (Exception) {
+                return null;
+            }
         }
         public static void Delete(string name) {
             File.Delete(Path.Combine(InternalStorage, name));
