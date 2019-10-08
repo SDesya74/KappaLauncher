@@ -37,7 +37,7 @@ namespace KappaLauncher.Application.Apps {
 						listener(progress);
 					});
 					handler.Post(new Runnable(() => {
-						Toast.MakeText(Launcher.Context, "Loading is ended...", ToastLength.Short).Show();
+						Toast.MakeText(Launcher.Context, "Loading is ended... \n Progress: " + progress, ToastLength.Short).Show();
 					}));
                 }).Start();
             }
