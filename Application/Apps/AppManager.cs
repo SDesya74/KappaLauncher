@@ -33,8 +33,8 @@ namespace KappaLauncher.Application.Apps {
 					double progress = 0D;
 					resolve.ForEach(e => {
 						LoadAppFromResolve(e);
-						progress += 1D / resolve.Count;
-						listener(progress);
+						progress++;
+						listener(progress / (double) resolve.Count);
 					});
 					handler.Post(new Runnable(() => {
 						Toast.MakeText(Launcher.Context, "Loading is ended... \n Progress: " + progress, ToastLength.Short).Show();
