@@ -3,7 +3,7 @@
 using Android.App;
 using Android.Content;
 using Android.Runtime;
-using KappaLauncher.Application.Launcher;
+using KappaLauncher.Application.Apps;
 using KappaLauncher.Application.Misc;
 using KappaLauncher.Misc;
 
@@ -21,6 +21,7 @@ namespace KappaLauncher {
             Screen.Init(context);
             DataSaver.Init(context);
 
+            AppManager.Init(context);
             Launcher.Init(context);
         }
     }
