@@ -4,7 +4,6 @@ using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
 
-using KappaLauncher.Application.Launcher;
 using KappaLauncher.Application.Misc;
 
 namespace KappaLauncher {
