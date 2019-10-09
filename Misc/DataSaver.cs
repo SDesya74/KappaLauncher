@@ -15,7 +15,7 @@ using Android.Widget;
 
 namespace KappaLauncher.Misc {
     class DataSaver {
-        public static string InternalStorage { get; private set; }
+        private static string InternalStorage;
         public static void Init(Context context) {
             InternalStorage = context.FilesDir.ToString();
         }
