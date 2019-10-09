@@ -1,11 +1,12 @@
-﻿using System;
+﻿
+using System.Collections.Generic;
 using Android.Content;
 using Android.Content.Res;
 using Android.Graphics;
-using Android.Runtime;
 
 namespace KappaLauncher.Misc {
 	class FontManager {
+		public static List<Font> Fonts { get; private set; }
 		private static Font CurrentFont;
 		public static Typeface Current {
 			get { return CurrentFont != null ? CurrentFont.Typeface : Typeface.Default; }
@@ -21,7 +22,24 @@ namespace KappaLauncher.Misc {
 
 		public static void Load() {
 
+			LoadFromAssets();
 		}
+
+
+
+		private static void LoadFromAssets() {
+			string[] folder = Assets.List("Fonts");
+			foreach (string file in folder) {
+				Typeface typeface = Typeface.CreateFromAsset(Assets, System.IO.Path.Combine("Fonts", file));
+				string name = file;
+				name = name.Substring(0, name.LastIndexOf('.') - 1);
+
+				Font font = new Font(typeface, name);
+			}
+		}
+
+
+
 
 
 		public class Font {
