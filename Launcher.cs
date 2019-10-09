@@ -45,16 +45,11 @@ namespace KappaLauncher {
         public static void Load() {
 			LoadingScreen screen = new LoadingScreen(Context);
 			screen.ProgressBar.LayerCount = 3;
-			screen.ProgressBar.StrokeWidth = 3.Dip();
+			screen.ProgressBar.StrokeWidth = 4.Dip();
 			Parent.AddView(screen);	
 
             AppManager.Load(progress => {
-				progress *= screen.ProgressBar.LayerCount;
-				int layer = 0;
-				while(progress > 0) {
-					screen.ProgressBar.SetProgress(layer++, Math.Min((float) progress--, 1));
-				}
-				
+				screen.ProgressBar.SetProgress(0, (float) progress);				
             });
         }
 
