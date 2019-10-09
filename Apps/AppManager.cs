@@ -4,11 +4,11 @@ using Android.Content;
 using Android.Content.PM;
 using Android.Widget;
 using System.Threading;
-using KappaLauncher.Application.Misc;
+using KappaLauncher.Misc;
 using Android.OS;
 using Java.Lang;
 
-namespace KappaLauncher.Application.Apps {
+namespace KappaLauncher.Apps {
     public static class AppManager {
         public static List<App> Apps { get; private set; }
         private static PackageManager Manager;

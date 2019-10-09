@@ -3,8 +3,7 @@
 using Android.App;
 using Android.Content;
 using Android.Runtime;
-using KappaLauncher.Application.Apps;
-using KappaLauncher.Application.Misc;
+using KappaLauncher.Apps;
 using KappaLauncher.Misc;
 
 namespace KappaLauncher {

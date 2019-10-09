@@ -13,7 +13,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace KappaLauncher.Application.Misc {
+namespace KappaLauncher.Misc {
     class DataSaver {
         private static string InternalStorage;
         public static void Init(Context context) {
