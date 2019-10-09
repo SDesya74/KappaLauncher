@@ -23,7 +23,7 @@ namespace KappaLauncher.Apps {
         public static void Load(LoadingListener listener) {
 			Handler handler = new Handler();
             Apps = (List<App>) DataSaver.Read("apps");
-            if (Apps == null) {
+			if (Apps == null) {
 				Java.Lang.Thread Th;
 				Th = new Java.Lang.Thread(() => {
 					Apps = new List<App>();
@@ -37,13 +37,18 @@ namespace KappaLauncher.Apps {
 						LoadAppFromResolve(e);
 						progress++;
 						listener(progress / (double) resolve.Count);
+
+
 						try {
-							Java.Lang.Thread.Sleep(10L);
+							Java.Lang.Thread.Sleep(10L); 
 						} catch { }
+
+
+
 					});
-                });
+				});
 				Th.Start();
-            }
+			} else listener(1);
         }
 
 
