@@ -59,10 +59,11 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\Apps\AppManager.cs" />
-    <Compile Include="Application\Launcher.cs" />
-    <Compile Include="Application\Misc\DataSaver.cs" />
-    <Compile Include="Application\Misc\Screen.cs" />
+    <Compile Include="Apps\AppManager.cs" />
+    <Compile Include="Launcher.cs" />
+    <Compile Include="Misc\DataSaver.cs" />
+    <Compile Include="Misc\Screen.cs" />
+    <Compile Include="Views\LoadingScreen.cs" />
     <Compile Include="LauncherApplication.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
