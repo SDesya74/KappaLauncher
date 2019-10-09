@@ -24,24 +24,28 @@ namespace KappaLauncher.Apps {
 			Handler handler = new Handler();
             Apps = (List<App>) DataSaver.Read("apps");
             if (Apps == null) {
-                new System.Threading.Thread(() => {
+				Java.Lang.Thread Th;
+				Th = new Java.Lang.Thread(() => {
 					Apps = new List<App>();
 
 					Intent loader = new Intent(Intent.ActionMain, null);
 					loader.AddCategory(Intent.CategoryLauncher);
 					List<ResolveInfo> resolve = Manager.QueryIntentActivities(loader, 0).ToList();
+
 					double progress = 0D;
 					resolve.ForEach(e => {
 						LoadAppFromResolve(e);
 						progress++;
 						listener(progress / (double) resolve.Count);
+						try {
+							Java.Lang.Thread.Sleep(10L);
+						} catch { }
 					});
-					handler.Post(new Runnable(() => {
-						Toast.MakeText(Launcher.Context, "Loading is ended... \n Progress: " + progress, ToastLength.Short).Show();
-					}));
-                }).Start();
+                });
+				Th.Start();
             }
         }
+
 
         public static void LoadAppFromResolve(ResolveInfo e) {
             string package = e.ActivityInfo.PackageName;
