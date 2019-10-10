@@ -16,6 +16,7 @@ namespace KappaLauncher.Views {
 	class LoadingScreen : LinearLayout {
 		public CircleLayerProgressBar ProgressBar { get; private set; }
 		public LoadingScreen(Context context) : base(context) {
+			SetBackgroundColor(Color.Rgb(0, 100, 0));
 
 			SetGravity(GravityFlags.Center);
 
