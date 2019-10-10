@@ -60,11 +60,19 @@ namespace KappaLauncher.Misc {
 
 		private static void LoadCurrentFont() {
 			string name = (string) DataSaver.Read("CurrentFont");
-			CurrentFont = Fonts.FirstOrDefault(e => e.Name == name);
+			CurrentFont = GetFontByName(name);
+		}
+
+
+		public static Font GetFontByName(string name) {
+			return Fonts.FirstOrDefault(e => e.Name == name); ;
 		}
 
 
 
+		public static void Save() {
+			DataSaver.Save("CurrentFont", CurrentFont.Name);
+		}
 
 
 		public class Font {
