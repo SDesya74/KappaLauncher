@@ -8,17 +8,19 @@ using Android.Views;
 using Java.Interop;
 
 namespace KappaLauncher.Misc {
-    public static class Screen {
-        public static int Width { get; private set; }
-        public static int Height { get; private set; }
-        public static float Scale { get; private set; }
-        public static int ActionBarHeight { get; private set; }
-        public static int StatusBarHeight { get; private set; }
-        public static int UsefulHeight {
-            get {
-                return Height - ActionBarHeight;
-            }
-        }
+	public static class Screen {
+		public static int Width { get; private set; }
+		public static int Height { get; private set; }
+		public static float Scale { get; private set; }
+		public static int ActionBarHeight { get; private set; }
+		public static int StatusBarHeight { get; private set; }
+		public static int UsefulHeight {
+			get {
+				return Height - ActionBarHeight;
+			}
+		}
+
+		public static DisplayMetrics DisplayMetrics{ get; private set;}
 
         public static int Dip2Px(float dip) {
             return (int) Math.Floor(dip * Scale);
@@ -26,12 +28,11 @@ namespace KappaLauncher.Misc {
         public static void Init(Context context) {
             IWindowManager wm = context.GetSystemService(Context.WindowService).JavaCast<IWindowManager>(); ;
 
-            Display display = wm.DefaultDisplay;
-            DisplayMetrics metrics = new DisplayMetrics();
-            display.GetMetrics(metrics);
+            DisplayMetrics = new DisplayMetrics();
+			wm.DefaultDisplay.GetMetrics(DisplayMetrics);
 
             Point point = new Point();
-            display.GetSize(point);
+            wm.DefaultDisplay.GetSize(point);
             Width = point.X;
             Height = point.Y;
 
