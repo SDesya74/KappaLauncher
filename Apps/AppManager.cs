@@ -51,7 +51,6 @@ namespace KappaLauncher.Apps {
 			} else listener(1);
         }
 
-
         public static void LoadAppFromResolve(ResolveInfo e) {
             string package = e.ActivityInfo.PackageName;
             string activity = e.ActivityInfo.Name;
@@ -63,10 +62,9 @@ namespace KappaLauncher.Apps {
             Apps.Add(app);
         }
 
-
-
-
-
+		public static App GetFromPackage(string package) {
+			return Apps.FirstOrDefault(e => e.Package == package);
+		}
 
 
         public static void Save() {
@@ -78,7 +76,7 @@ namespace KappaLauncher.Apps {
 
 
         public class App {
-            public string Package { get; private set; }
+            public string Package { get; private set; } // key
             public string Activity { get; private set; }
             public string Name { get; private set; }
             public long InstallTime { get; private set; }
