@@ -31,8 +31,6 @@ namespace KappaLauncher.Misc {
 			LoadCurrentFont();
 		}
 
-
-
 		private static void LoadFromAssets() {
 			string[] folder = Assets.List("Fonts");
 			foreach (string file in folder) {
@@ -44,7 +42,6 @@ namespace KappaLauncher.Misc {
 				Fonts.Add(font);
 			}
 		}
-
 		private static void LoadFromFolder() {
 			string path = System.IO.Path.Combine(InternalStorage, "Fonts");
 			string[] folder = Directory.GetFiles(path);
@@ -57,7 +54,6 @@ namespace KappaLauncher.Misc {
 				Fonts.Add(font);
 			}
 		}
-
 		private static void LoadCurrentFont() {
 			string name = (string) DataSaver.Read("CurrentFont");
 			CurrentFont = GetFontByName(name);
