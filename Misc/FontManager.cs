@@ -5,6 +5,8 @@ using Android.Content;
 using Android.Content.Res;
 using Android.Graphics;
 
+using System.Linq;
+
 namespace KappaLauncher.Misc {
 	class FontManager {
 		public static List<Font> Fonts { get; private set; }
@@ -19,12 +21,14 @@ namespace KappaLauncher.Misc {
 		public static void Init(Context context) {
 			Assets = context.Assets;
 			InternalStorage = context.FilesDir.ToString();
+			CurrentFont = new Font(Typeface.Default, "Default");
 		}
 
 		public static void Load() {
 			Fonts = new List<Font>();
 			LoadFromAssets();
 			LoadFromFolder();
+			LoadCurrentFont();
 		}
 
 
@@ -45,13 +49,18 @@ namespace KappaLauncher.Misc {
 			string path = System.IO.Path.Combine(InternalStorage, "Fonts");
 			string[] folder = Directory.GetFiles(path);
 			foreach (string file in folder) {
-				Typeface typeface = Typeface.CreateFromFile(System.IO.Path.Combine(path, file)));
+				Typeface typeface = Typeface.CreateFromFile(System.IO.Path.Combine(path, file));
 				string name = file;
 				name = name.Substring(0, name.LastIndexOf('.') - 1);
 
 				Font font = new Font(typeface, name);
 				Fonts.Add(font);
 			}
+		}
+
+		private static void LoadCurrentFont() {
+			string name = (string) DataSaver.Read("CurrentFont");
+			CurrentFont = Fonts.FirstOrDefault(e => e.Name == name);
 		}
 
 
