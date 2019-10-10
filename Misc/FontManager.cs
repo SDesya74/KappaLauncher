@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.IO;
 using Android.Content;
 using Android.Content.Res;
 using Android.Graphics;
@@ -21,8 +22,9 @@ namespace KappaLauncher.Misc {
 		}
 
 		public static void Load() {
-
+			Fonts = new List<Font>();
 			LoadFromAssets();
+			LoadFromFolder();
 		}
 
 
@@ -35,6 +37,20 @@ namespace KappaLauncher.Misc {
 				name = name.Substring(0, name.LastIndexOf('.') - 1);
 
 				Font font = new Font(typeface, name);
+				Fonts.Add(font);
+			}
+		}
+
+		private static void LoadFromFolder() {
+			string path = System.IO.Path.Combine(InternalStorage, "Fonts");
+			string[] folder = Directory.GetFiles(path);
+			foreach (string file in folder) {
+				Typeface typeface = Typeface.CreateFromFile(System.IO.Path.Combine(path, file)));
+				string name = file;
+				name = name.Substring(0, name.LastIndexOf('.') - 1);
+
+				Font font = new Font(typeface, name);
+				Fonts.Add(font);
 			}
 		}
 
