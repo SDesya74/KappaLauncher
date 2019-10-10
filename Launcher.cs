@@ -14,9 +14,10 @@ using Android.Widget;
 using KappaLauncher.Apps;
 using KappaLauncher.Misc;
 using KappaLauncher.Views;
+using KappaLauncher.Widgets;
 
 namespace KappaLauncher {
-    public static class Launcher {
+    public static partial class Launcher {
         public static Context Context { get; private set; }
         public static FrameLayout Parent { get; private set; }
         public static ScrollView Scroll { get; private set; }
@@ -27,8 +28,7 @@ namespace KappaLauncher {
             Context = context;
 
             Parent = new FrameLayout(Context);
-            Parent.SetBackgroundColor(Color.Rgb(0, 100, 0));
-
+            
             Scroll = new ScrollView(Context);
             Parent.AddView(Scroll);
 
@@ -45,16 +45,30 @@ namespace KappaLauncher {
         public static void Load() {
 			LoadingScreen screen = new LoadingScreen(Context);
 			screen.ProgressBar.LayerCount = 3;
-			screen.ProgressBar.StrokeWidth = 4.Dip();
+			screen.ProgressBar.StrokeWidth = 8.Dip();
 			Parent.AddView(screen);	
 
-            AppManager.Load(progress => {
-				screen.ProgressBar.SetProgress(0, (float) progress);				
-            });
+            AppManager.Load(progress => screen.ProgressBar.SetProgress(0, (float) progress));
+
+			AppGroupData data = new AppGroupData(AppManager.Apps);
+			Widgets.Add(data);
+
+			Parent.RemoveView(screen);
         }
 
         public static void Save() {
 
         }
+
+
+		public static void Build() {
+			Widgets.ForEach(widget => {
+				if(widget is AppGroupData) {
+					AppGroupView view = new AppGroupView(Context, (AppGroupData) widget);
+					Main.AddView(view);
+				}
+
+			});
+		}
     }
 }
