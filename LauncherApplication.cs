@@ -11,7 +11,6 @@ namespace KappaLauncher {
     public class LauncherApplication : Android.App.Application {
         public LauncherApplication(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer) {
         }
-
         public override void OnCreate() {
             base.OnCreate();
 
