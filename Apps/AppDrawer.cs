@@ -28,12 +28,14 @@ namespace KappaLauncher.Apps {
 					break;
 
 				case AppDrawingData.Shape.RoundRect:
-					RectF rect = new RectF(x, y, x + data.BackBounds.Width(), y + data.BackBounds.Height());
-					canvas.DrawRoundRect(rect, 3.Dip(), 3.Dip(), Paint);
+					RectF roundRect = new RectF(x, y, x + data.BackBounds.Width(), y + data.BackBounds.Height());
+					canvas.DrawRoundRect(roundRect, 3.Dip(), 3.Dip(), Paint);
 
 					break;
 
 				case AppDrawingData.Shape.Oval:
+					RectF oval = new RectF(x, y, x + data.BackBounds.Width(), y + data.BackBounds.Height());
+					canvas.DrawRoundRect(oval, 999.Dip(), 999.Dip(), Paint);
 					break;
 
 				case AppDrawingData.Shape.Hex:
