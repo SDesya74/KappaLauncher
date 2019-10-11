@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -32,7 +33,7 @@ namespace KappaLauncher.Widgets {
 				AppDrawingData data = Data.Items[i];
 
 				if (row == null) {
-					row = new Row();
+					row = new Row(this);
 					Rows.Add(row);
 				}
 
@@ -51,13 +52,23 @@ namespace KappaLauncher.Widgets {
 
 			MeasureItems();
 
-			int height = 500;
+			int height = Data.RowMargin;
+			Rows.ForEach(e => height += e.Height + Data.RowMargin);
 
-			Toast.MakeText(Context, "Width: " + MeasuredWidth, ToastLength.Short).Show();
+			Toast.MakeText(Context, "Row count: " + Rows.Count + "\nHeight: " + height, ToastLength.Short).Show();
 
 			SetMeasuredDimension(MeasuredWidth, height);
 		}
 
+
+		protected override void OnDraw(Canvas canvas) {
+			int y = Data.RowMargin;
+			Rows.ForEach(e => {
+				e.Draw(canvas, y);
+				y += e.Height + Data.RowMargin;
+			});
+
+		}
 
 
 
@@ -67,15 +78,17 @@ namespace KappaLauncher.Widgets {
 
 		public class Row {
 			public List<AppDrawingData> Elements { get; set; }
-			private int Width { get; set; }
+			public int Width { get; private set; }
+			public int Height { get; private set; }
 			public int ItemsCount {
 				get { return Elements.Count; }
 			}
 
-			public View Parent;
+			public AppGroupView Parent;
 
 
 			public Row(AppGroupView view) {
+				Elements = new List<AppDrawingData>();
 				Parent = view;
 				Width = 0;
 			}
@@ -86,6 +99,20 @@ namespace KappaLauncher.Widgets {
 
 			public void Add(AppDrawingData data) {
 				Elements.Add(data);
+				Width += data.BackBounds.Width();
+				Height = Math.Max(Height, data.BackBounds.Height());
+			}
+
+
+
+			public void Draw(Canvas canvas, int y) {
+				int bx = (Parent.Width - Width) >> 1;
+
+				Elements.ForEach(e => {
+					AppDrawer.DrawApp(canvas, bx, y + (e.BackBounds.Height() + Height) >> 1, e);
+					bx += e.BackBounds.Width() + Parent.Data.ColumnMargin;
+				});
+				
 			}
 		}
 	}
