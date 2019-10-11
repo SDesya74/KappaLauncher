@@ -14,7 +14,6 @@ namespace KappaLauncher {
 	public static partial class Launcher {
 		public static List<WidgetData> Widgets;
 
-
 		[Serializable]
 		public abstract class WidgetData { };
 
