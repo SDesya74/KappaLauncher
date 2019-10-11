@@ -24,7 +24,6 @@ namespace KappaLauncher {
 		public static ScrollView Scroll { get; private set; }
 		public static LinearLayout Main { get; private set; }
 
-
 		public static void Init(Context context) {
 			Context = context;
 			Widgets = new List<WidgetData>();
