@@ -18,7 +18,6 @@ namespace KappaLauncher {
 
             Screen.Init(context);
             DataSaver.Init(context);
-
             AppManager.Init(context);
             Launcher.Init(context);
         }
