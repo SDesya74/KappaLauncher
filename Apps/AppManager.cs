@@ -5,6 +5,7 @@ using Android.Content;
 using Android.Content.PM;
 using KappaLauncher.Misc;
 using Android.OS;
+using System.Text;
 
 namespace KappaLauncher.Apps {
     public static class AppManager {
@@ -58,8 +59,8 @@ namespace KappaLauncher.Apps {
             App app = new App(package, activity, name, installTime);
             Apps.Add(app);
         }
-		public static App GetFromPackage(string package) {
-			return Apps.FirstOrDefault(e => e.Package == package);
+		public static App GetByKey(string key) {
+			return Apps.FirstOrDefault(e => e.Key == key);
 		}
         public static void Save() {
             DataSaver.Save("apps", Apps);
@@ -70,7 +71,8 @@ namespace KappaLauncher.Apps {
 
 
         public class App {
-            public string Package { get; private set; } // key
+			public string Key { get; private set; }
+            private string Package { get; set; }
             public string Activity { get; private set; }
             public string Name { get; private set; }
             public long InstallTime { get; private set; }
@@ -80,7 +82,13 @@ namespace KappaLauncher.Apps {
                 Activity = activity;
                 Name = name;
                 InstallTime = instllTime;
-            }
+
+				var crypt = new System.Security.Cryptography.SHA256Managed();
+				var hash = new StringBuilder();
+				byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(Package + ":" + Activity));
+				foreach (byte theByte in crypto) hash.Append(theByte.ToString("x2"));
+				Key = hash.ToString();
+			}
 
 
             public int Popularity { get; set; }
