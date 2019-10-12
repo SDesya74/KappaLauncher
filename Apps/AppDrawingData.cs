@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
 using Android.Util;
-using Android.Views;
-using Android.Widget;
 using KappaLauncher.Misc;
 
 namespace KappaLauncher.Apps {
 	public class AppDrawingData {
 		public string Package { get; private set; }
-
 		public string Label { get; set; }
 
 		public Color TextColor { get; set; }
@@ -26,9 +18,7 @@ namespace KappaLauncher.Apps {
 
 		public Rect BackBounds { get; private set; }
 		public Rect TextBounds { get; private set; }
-		 
 		public Point Padding { get; set; }
-
 		public float TextSize {
 			get { return TypedValue.ApplyDimension(ComplexUnitType.Sp, Popularity + 10, Screen.DisplayMetrics); }
 		}
@@ -64,11 +54,9 @@ namespace KappaLauncher.Apps {
 			BackBounds.Bottom += Padding.Y;
 		}
 
-
 		public enum Style {
 			Stroke, Fill
 		}
-
 		public enum Shape {
 			None, Rect, RoundRect, Oval, Hex
 		}
