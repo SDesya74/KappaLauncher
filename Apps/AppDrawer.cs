@@ -14,7 +14,8 @@ using KappaLauncher.Misc;
 
 namespace KappaLauncher.Apps {
 	public static class AppDrawer {
-		private static Paint Paint = new Paint();
+		private static Paint Paint = new Paint(PaintFlags.AntiAlias);
+		private static Path Path = new Path();
 		public static void DrawApp(Canvas canvas, int x, int y, AppDrawingData data) {
 			DrawAppBackground(canvas, x, y, data);
 		}
@@ -39,8 +40,30 @@ namespace KappaLauncher.Apps {
 					break;
 
 				case AppDrawingData.Shape.Hex:
+					Path.Reset();
+					int width = data.BackBounds.Width();
+					int height = data.BackBounds.Height();
+					Path.MoveTo(x + width / 2, y);
+
+					Path.LineTo(x + width - height / 2, y);
+					Path.LineTo(x + width, y + height / 2);
+					Path.LineTo(x + width - height / 2, y + height);
+
+					Path.LineTo(x + height / 2, y + height);
+					Path.LineTo(x, y + height / 2);
+					Path.LineTo(x + height / 2, y);
+
+					Path.LineTo(x + width / 2, y);
+
+					canvas.DrawPath(Path, Paint);
+					Path.Reset();
+
 					break;
 			}
+		}
+
+		public static void DrawAppLabel(Canvas canvas, int x, int y, AppDrawingData data) {
+
 		}
 
 
