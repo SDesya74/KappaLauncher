@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-using Android.App;
 using Android.Content;
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using KappaLauncher.Apps;
@@ -54,8 +49,6 @@ namespace KappaLauncher.Widgets {
 
 			int height = Data.RowMargin;
 			Rows.ForEach(e => height += e.Height + Data.RowMargin);
-
-			Toast.MakeText(Context, "Row count: " + Rows.Count + "\nHeight: " + height, ToastLength.Short).Show();
 
 			SetMeasuredDimension(MeasuredWidth, height);
 		}
