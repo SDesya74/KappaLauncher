@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Android.Content;
 using Android.Content.Res;
@@ -63,7 +62,6 @@ namespace KappaLauncher.Misc {
 		public static Font GetFontByName(string name) {
 			return Fonts.FirstOrDefault(e => e.Name == name); ;
 		}
-
 
 
 		public static void Save() {
