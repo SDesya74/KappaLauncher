@@ -6,7 +6,7 @@ using KappaLauncher.Misc;
 
 namespace KappaLauncher.Apps {
 	public class AppDrawingData {
-		public string Package { get; private set; }
+		public string Key { get; private set; }
 		public string Label { get; set; }
 
 		public Color TextColor { get; set; }
@@ -25,7 +25,7 @@ namespace KappaLauncher.Apps {
 
 
 		public AppDrawingData(AppManager.App app) {
-			Package = app.Package;
+			Key = app.Key;
 			Label = app.Name;
 			Popularity = app.Popularity;
 
