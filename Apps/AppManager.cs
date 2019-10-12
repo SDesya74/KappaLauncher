@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using Android.Content;
 using Android.Content.PM;
-using Android.Widget;
-using System.Threading;
 using KappaLauncher.Misc;
 using Android.OS;
-using Java.Lang;
 
 namespace KappaLauncher.Apps {
     public static class AppManager {
@@ -50,7 +48,6 @@ namespace KappaLauncher.Apps {
 				Th.Start();
 			} else listener(1);
         }
-
         public static void LoadAppFromResolve(ResolveInfo e) {
             string package = e.ActivityInfo.PackageName;
             string activity = e.ActivityInfo.Name;
@@ -61,12 +58,9 @@ namespace KappaLauncher.Apps {
             App app = new App(package, activity, name, installTime);
             Apps.Add(app);
         }
-
 		public static App GetFromPackage(string package) {
 			return Apps.FirstOrDefault(e => e.Package == package);
 		}
-
-
         public static void Save() {
             DataSaver.Save("apps", Apps);
         }
