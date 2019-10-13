@@ -69,6 +69,7 @@
     <Compile Include="Apps\AppDrawingData.cs" />
     <Compile Include="Apps\AppManager.cs" />
     <Compile Include="Gestures\IBaseGestureListener.cs" />
+    <Compile Include="Gestures\IPinchListener.cs" />
     <Compile Include="Gestures\ISwipeListener.cs" />
     <Compile Include="Launcher.cs" />
     <Compile Include="Misc\DataSaver.cs" />
