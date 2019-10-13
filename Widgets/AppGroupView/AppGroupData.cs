@@ -16,8 +16,8 @@ namespace KappaLauncher.Widgets {
 			Items = new List<AppDrawingData>();
 			list.ForEach(e => Items.Add(new AppDrawingData(e)));
 
-			RowMargin = 3.Dip();
-			ColumnMargin = 3.Dip();
+			RowMargin = 2.Dip();
+			ColumnMargin = 4.Dip();
 		}
 		
 	}
