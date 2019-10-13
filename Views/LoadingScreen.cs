@@ -13,7 +13,6 @@ namespace KappaLauncher.Views {
 		public CircleLayerProgressBar ProgressBar { get; private set; }
 		public LoadingScreen(Context context) : base(context) {
 			SetBackgroundColor(Color.Rgb(0, 100, 0));
-
 			SetGravity(GravityFlags.Center);
 
 			int size = Math.Min(Screen.Width, Screen.Height) * 4 / 5;
@@ -21,9 +20,6 @@ namespace KappaLauncher.Views {
 			ProgressBar.LayoutParameters = new ViewGroup.LayoutParams(size, size);
 			AddView(ProgressBar);
 		}
-
-
-
 
 
 		public class CircleLayerProgressBar : View {
@@ -69,9 +65,6 @@ namespace KappaLauncher.Views {
 					LayerProgressList[layer] = progress;
 				} catch { }
 			}
-
-
-
 			protected override void OnDraw(Canvas canvas) {
 				Bounds.Left = Bounds.Top = StrokeWidth;
 				Bounds.Right = Bounds.Bottom = Width - StrokeWidth;

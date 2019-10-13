@@ -6,6 +6,7 @@ using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using KappaLauncher.Apps;
+using KappaLauncher.Misc;
 
 namespace KappaLauncher.Widgets {
 	class AppGroupView : View {
@@ -55,6 +56,8 @@ namespace KappaLauncher.Widgets {
 
 
 		protected override void OnDraw(Canvas canvas) {
+			canvas.DrawRGB(50, 100, 150);
+
 			int y = Data.RowMargin;
 			Rows.ForEach(e => {
 				e.Draw(canvas, y);
@@ -83,7 +86,7 @@ namespace KappaLauncher.Widgets {
 			public Row(AppGroupView view) {
 				Elements = new List<AppDrawingData>();
 				Parent = view;
-				Width = 0;
+				Width = Height = 0;
 			}
 
 			public bool CanAdd(AppDrawingData data) {
@@ -92,17 +95,17 @@ namespace KappaLauncher.Widgets {
 
 			public void Add(AppDrawingData data) {
 				Elements.Add(data);
-				Width += data.BackBounds.Width();
+				Width += data.BackBounds.Width() + Parent.Data.ColumnMargin;
 				Height = Math.Max(Height, data.BackBounds.Height());
 			}
 
 
 
 			public void Draw(Canvas canvas, int y) {
-				int bx = (Parent.Width - Width) >> 1;
+				int bx = (Parent.Width - (Width - Parent.Data.ColumnMargin)) / 2;
 
 				Elements.ForEach(e => {
-					AppDrawer.DrawApp(canvas, bx, y + (e.BackBounds.Height() + Height) >> 1, e);
+					AppDrawer.DrawApp(canvas, bx, y + (Height - e.BackBounds.Height()) / 2, e);
 					bx += e.BackBounds.Width() + Parent.Data.ColumnMargin;
 				});
 				
