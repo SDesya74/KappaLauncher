@@ -13,7 +13,7 @@ namespace KappaLauncher.Apps {
 		public Color BackColor { get; set; }
 		public Style BackStyle { get; set; }
 		public Shape BackShape { get; set; }
-		public float Alpha { get; set; }
+		public int Alpha { get; set; }
 		public int Popularity { get; set; }
 
 		public Rect BackBounds { get; private set; }
@@ -23,19 +23,21 @@ namespace KappaLauncher.Apps {
 			get { return TypedValue.ApplyDimension(ComplexUnitType.Sp, Popularity + 10, Screen.DisplayMetrics); }
 		}
 
+		public TypefaceStyle TextStyle { get; set; }
+
 
 		public AppDrawingData(AppManager.App app) {
 			Key = app.Key;
 			Label = app.Name;
-			Popularity = app.Popularity;
+			Popularity = app.Popularity + new Random().Next(10);
 
 			TextColor = Color.LightGray;
+			TextStyle = TypefaceStyle.Normal;
 
-			Random r = new Random();
-			BackColor = Color.Rgb(r.Next(256), r.Next(256), r.Next(256));
-			Alpha = 1;
+			BackColor = Color.Transparent;
+			Alpha = 255;
 
-			BackShape = Shape.Rect;
+			BackShape = Shape.None;
 			BackStyle = Style.Fill;
 
 			Padding = new Point(3.Dip(), 3.Dip());
