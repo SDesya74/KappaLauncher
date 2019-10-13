@@ -28,7 +28,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>portable</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -36,6 +36,12 @@
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -62,6 +68,8 @@
     <Compile Include="Apps\AppDrawer.cs" />
     <Compile Include="Apps\AppDrawingData.cs" />
     <Compile Include="Apps\AppManager.cs" />
+    <Compile Include="Gestures\IBaseGestureListener.cs" />
+    <Compile Include="Gestures\ISwipeListener.cs" />
     <Compile Include="Launcher.cs" />
     <Compile Include="Misc\DataSaver.cs" />
     <Compile Include="Misc\FontManager.cs" />
