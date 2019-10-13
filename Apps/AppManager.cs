@@ -66,10 +66,6 @@ namespace KappaLauncher.Apps {
             DataSaver.Save("apps", Apps);
         }
 
-
-
-
-
         public class App {
 			public string Key { get; private set; }
             private string Package { get; set; }
