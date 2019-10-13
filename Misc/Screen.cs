@@ -26,7 +26,7 @@ namespace KappaLauncher.Misc {
             return (int) Math.Floor(dip * Scale);
         }
         public static void Init(Context context) {
-            IWindowManager wm = context.GetSystemService(Context.WindowService).JavaCast<IWindowManager>(); ;
+            IWindowManager wm = context.GetSystemService(Context.WindowService).JavaCast<IWindowManager>();
 
             DisplayMetrics = new DisplayMetrics();
 			wm.DefaultDisplay.GetMetrics(DisplayMetrics);
