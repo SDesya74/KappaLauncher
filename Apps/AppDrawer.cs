@@ -3,15 +3,21 @@ using KappaLauncher.Misc;
 
 namespace KappaLauncher.Apps {
 	public static class AppDrawer {
-		private static Paint Paint = new Paint(PaintFlags.AntiAlias);
+		public static Paint Paint = new Paint(PaintFlags.AntiAlias);
 		private static Path Path = new Path();
 		public static void DrawApp(Canvas canvas, int x, int y, AppDrawingData data) {
 			DrawAppBackground(canvas, x, y, data);
+			DrawAppLabel(canvas, x, y, data);
+
+			Paint.Color = Color.Red;
+			canvas.DrawPoint(x, y, Paint);
 		}
 
 		public static void DrawAppBackground(Canvas canvas, int x, int y, AppDrawingData data) {
 			Paint.SetStyle(data.BackStyle == AppDrawingData.Style.Fill ? Paint.Style.Fill : Paint.Style.Stroke);
 			Paint.Color = data.BackColor;
+			Paint.Alpha = data.Alpha;
+
 			switch (data.BackShape) {
 				case AppDrawingData.Shape.Rect:
 					canvas.DrawRect(x, y, x + data.BackBounds.Width(), y + data.BackBounds.Height(), Paint);
@@ -52,7 +58,16 @@ namespace KappaLauncher.Apps {
 		}
 
 		public static void DrawAppLabel(Canvas canvas, int x, int y, AppDrawingData data) {
+			Paint.SetTypeface(Typeface.Create(FontManager.Current, data.TextStyle));
+			Paint.TextSize = data.TextSize;
+			Paint.Color = data.TextColor;
+			Paint.Alpha = data.Alpha;
 
+			int tx = x + (data.BackBounds.Width() - data.TextBounds.Width()) / 2;
+			int ty = y + (data.BackBounds.Height() + data.TextBounds.Height()) / 2;
+
+			
+			canvas.DrawText(data.Label, tx, ty, Paint);
 		}
 
 
