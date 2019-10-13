@@ -37,6 +37,7 @@ namespace KappaLauncher.Misc {
             Height = point.Y;
 
             Scale = context.Resources.DisplayMetrics.Density;
+
             TypedArray ta = context.Theme.ObtainStyledAttributes(new int[] { Android.Resource.Attribute.ActionBarSize });
             ActionBarHeight = (int) ta.GetDimension(0, 0);
 

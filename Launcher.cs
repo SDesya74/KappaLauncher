@@ -66,6 +66,7 @@ namespace KappaLauncher {
 					AppGroupView view = new AppGroupView(Context, (AppGroupData) widget);
 					Main.AddView(view);
 				}
+
 			});
 		}
 	}
