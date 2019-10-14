@@ -7,6 +7,5 @@ namespace KappaLauncher {
 
 		[Serializable]
 		public abstract class WidgetData { };
-
 	}
 }
