@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using KappaLauncher.Apps;
 using KappaLauncher.Misc;
+using KappaLauncher.Views;
 
 namespace KappaLauncher.Widgets {
 
@@ -19,6 +20,5 @@ namespace KappaLauncher.Widgets {
 			RowMargin = 2.Dip();
 			ColumnMargin = 4.Dip();
 		}
-		
 	}
 }

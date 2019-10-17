@@ -5,6 +5,7 @@ using Android.Content;
 using Android.Runtime;
 using KappaLauncher.Apps;
 using KappaLauncher.Misc;
+using KappaLauncher.Views;
 
 namespace KappaLauncher {
     [Application]

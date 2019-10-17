@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Widget;
 
 using KappaLauncher.Misc;
+using KappaLauncher.Views;
 
 namespace KappaLauncher {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
