@@ -22,14 +22,13 @@ namespace KappaLauncher.Apps {
 		public float TextSize {
 			get { return TypedValue.ApplyDimension(ComplexUnitType.Sp, Popularity + 10, Screen.DisplayMetrics); }
 		}
-
 		public TypefaceStyle TextStyle { get; set; }
 
 
 		public AppDrawingData(AppManager.App app) {
 			Key = app.Key;
 			Label = app.Name;
-			Popularity = app.Popularity + new Random().Next(10);
+			Popularity = app.Popularity;
 
 			TextColor = Color.LightGray;
 			TextStyle = TypefaceStyle.Normal;
