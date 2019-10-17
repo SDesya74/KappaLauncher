@@ -11,7 +11,7 @@ using KappaLauncher.Misc;
 using KappaLauncher.Views;
 using KappaLauncher.Widgets;
 
-namespace KappaLauncher {
+namespace KappaLauncher.Views {
 	public static partial class Launcher {
 		public static Handler Handler = new Handler();
 		public static Context Context { get; private set; }
