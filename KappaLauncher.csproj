@@ -71,7 +71,7 @@
     <Compile Include="Gestures\IBaseGestureListener.cs" />
     <Compile Include="Gestures\IPinchListener.cs" />
     <Compile Include="Gestures\ISwipeListener.cs" />
-    <Compile Include="Launcher.cs" />
+    <Compile Include="Views\Launcher.cs" />
     <Compile Include="Misc\DataSaver.cs" />
     <Compile Include="Misc\FontManager.cs" />
     <Compile Include="Misc\Screen.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Widgets.cs" />
+    <Compile Include="Views\Widgets.cs" />
     <Compile Include="Widgets\AppGroupView\AppGroupData.cs" />
     <Compile Include="Widgets\AppGroupView\AppGroupView.cs" />
   </ItemGroup>
