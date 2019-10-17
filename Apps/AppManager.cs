@@ -66,6 +66,17 @@ namespace KappaLauncher.Apps {
             DataSaver.Save("apps", Apps);
         }
 
+
+
+
+
+
+
+
+
+
+
+
         public class App {
 			public string Key { get; private set; }
             private string Package { get; set; }
@@ -79,11 +90,11 @@ namespace KappaLauncher.Apps {
                 Name = name;
                 InstallTime = instllTime;
 
-				var crypt = new System.Security.Cryptography.SHA256Managed();
+				/*var crypt = new System.Security.Cryptography.SHA256Managed();
 				var hash = new StringBuilder();
 				byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(Package + ":" + Activity));
-				foreach (byte theByte in crypto) hash.Append(theByte.ToString("x2"));
-				Key = hash.ToString();
+				foreach (byte theByte in crypto) hash.Append(theByte.ToString("x2"));*/
+				Key = Package + Activity; // hash.ToString();
 			}
 
 
