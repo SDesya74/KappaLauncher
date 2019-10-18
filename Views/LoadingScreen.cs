@@ -11,6 +11,7 @@ using KappaLauncher.Misc;
 namespace KappaLauncher.Views {
 	class LoadingScreen : LinearLayout {
 		public CircleLayerProgressBar ProgressBar { get; private set; }
+
 		public LoadingScreen(Context context) : base(context) {
 			SetBackgroundColor(Color.Rgb(0, 100, 0));
 			SetGravity(GravityFlags.Center);
@@ -31,6 +32,7 @@ namespace KappaLauncher.Views {
 				get { return Paint.StrokeWidth; }
 				set { Paint.StrokeWidth = value; }
 			}
+
 			public int LayerCount {
 				get { return LayerProgressList.Count; }
 				set {
@@ -65,6 +67,7 @@ namespace KappaLauncher.Views {
 					LayerProgressList[layer] = progress;
 				} catch { }
 			}
+
 			protected override void OnDraw(Canvas canvas) {
 				Bounds.Left = Bounds.Top = StrokeWidth;
 				Bounds.Right = Bounds.Bottom = Width - StrokeWidth;
@@ -80,6 +83,5 @@ namespace KappaLauncher.Views {
 
 			}
 		}
-
 	}
 }
