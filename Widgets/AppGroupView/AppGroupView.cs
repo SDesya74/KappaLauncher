@@ -9,15 +9,15 @@ using KappaLauncher.Apps;
 using KappaLauncher.Misc;
 
 namespace KappaLauncher.Widgets {
-	class AppGroupView : View {
+	partial class AppGroupView : View {
 		public AppGroupData Data { get; private set; }
-		public List<Row> Rows { get; private set; }
-
+		
 
 		public AppGroupView(Context context, AppGroupData data) : base(context) {
 			Data = data;
-
 			Rows = new List<Row>();
+
+			SetOnTouchListener(new AppGroupTouchListener(this));
 		}
 
 
@@ -40,9 +40,6 @@ namespace KappaLauncher.Widgets {
 			}
 		}
 
-
-
-
 		protected override void OnMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 			base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
 
@@ -53,7 +50,6 @@ namespace KappaLauncher.Widgets {
 
 			SetMeasuredDimension(MeasuredWidth, height);
 		}
-
 
 		protected override void OnDraw(Canvas canvas) {
 			canvas.DrawRGB(50, 100, 150);
@@ -72,44 +68,8 @@ namespace KappaLauncher.Widgets {
 
 
 
-		public class Row {
-			public List<AppDrawingData> Elements { get; set; }
-			public int Width { get; private set; }
-			public int Height { get; private set; }
-			public int ItemsCount {
-				get { return Elements.Count; }
-			}
-
-			public AppGroupView Parent;
+		
 
 
-			public Row(AppGroupView view) {
-				Elements = new List<AppDrawingData>();
-				Parent = view;
-				Width = Height = 0;
-			}
-
-			public bool CanAdd(AppDrawingData data) {
-				return Width + data.BackBounds.Width() < Parent.MeasuredWidth;
-			}
-
-			public void Add(AppDrawingData data) {
-				Elements.Add(data);
-				Width += data.BackBounds.Width() + Parent.Data.ColumnMargin;
-				Height = Math.Max(Height, data.BackBounds.Height());
-			}
-
-
-
-			public void Draw(Canvas canvas, int y) {
-				int bx = (Parent.Width - (Width - Parent.Data.ColumnMargin)) / 2;
-
-				Elements.ForEach(e => {
-					AppDrawer.DrawApp(canvas, bx, y + (Height - e.BackBounds.Height()) / 2, e);
-					bx += e.BackBounds.Width() + Parent.Data.ColumnMargin;
-				});
-				
-			}
-		}
 	}
 }
