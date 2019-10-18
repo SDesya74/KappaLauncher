@@ -8,6 +8,7 @@ using Android.Content;
 namespace KappaLauncher.Misc {
     class DataSaver {
         public static string InternalStorage { get; private set; }
+
         public static void Init(Context context) {
             InternalStorage = context.FilesDir.ToString();
         }
@@ -21,6 +22,7 @@ namespace KappaLauncher.Misc {
             formatter.Serialize(stream, data);
             stream.Close();
         }
+
         public static object Read(string name) {
             try {
                 IFormatter formatter = new BinaryFormatter();
@@ -35,6 +37,7 @@ namespace KappaLauncher.Misc {
                 return null;
             }
         }
+
         public static void Delete(string name) {
             File.Delete(Path.Combine(InternalStorage, name));
         }
