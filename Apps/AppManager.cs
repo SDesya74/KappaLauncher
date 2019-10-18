@@ -11,6 +11,7 @@ namespace KappaLauncher.Apps {
     public static class AppManager {
         public static List<App> Apps { get; private set; }
         private static PackageManager Manager;
+
         public static void Init(Context context) {
             Manager = context.PackageManager;
             Apps = new List<App>();
@@ -19,6 +20,7 @@ namespace KappaLauncher.Apps {
 
 
         public delegate void LoadingListener(double progress);
+
         public static void Load(LoadingListener listener) {
 			Handler handler = new Handler();
             Apps = (List<App>) DataSaver.Read("apps");
@@ -49,6 +51,7 @@ namespace KappaLauncher.Apps {
 				Th.Start();
 			} else listener(1);
         }
+
         public static void LoadAppFromResolve(ResolveInfo e) {
             string package = e.ActivityInfo.PackageName;
             string activity = e.ActivityInfo.Name;
@@ -59,16 +62,14 @@ namespace KappaLauncher.Apps {
             App app = new App(package, activity, name, installTime);
             Apps.Add(app);
         }
+
 		public static App GetByKey(string key) {
 			return Apps.FirstOrDefault(e => e.Key == key);
 		}
+
         public static void Save() {
             DataSaver.Save("apps", Apps);
         }
-
-
-
-
 
 
 
@@ -94,9 +95,8 @@ namespace KappaLauncher.Apps {
 				var hash = new StringBuilder();
 				byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(Package + ":" + Activity));
 				foreach (byte theByte in crypto) hash.Append(theByte.ToString("x2"));*/
-				Key = Package + Activity; // hash.ToString();
+				Key = Package + ":" + Activity; // hash.ToString();
 			}
-
 
             public int Popularity { get; set; }
             public bool Hidden { get; set; }
