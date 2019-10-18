@@ -32,11 +32,13 @@ namespace KappaLauncher.Views {
 			Main.Orientation = Orientation.Vertical;
 			Scroll.AddView(Main);
 		}
+
 		public static void Show(Activity activity) {
 			ViewGroup parentGroup = (ViewGroup) Parent.Parent;
 			parentGroup?.RemoveView(Parent);
 			activity.SetContentView(Parent);
 		}
+
 		public static void Load() {
 			LoadingScreen screen = new LoadingScreen(Context);
 			screen.ProgressBar.LayerCount = 3;
@@ -57,9 +59,11 @@ namespace KappaLauncher.Views {
 
 			});
 		}
+
 		public static void Save() {
 
 		}
+
 		public static void Build() {
 			Widgets.ForEach(widget => {
 				if (widget is AppGroupData) {
