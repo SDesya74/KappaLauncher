@@ -70,7 +70,6 @@ namespace KappaLauncher.Apps {
 			canvas.DrawText(data.Label, tx, ty, Paint);
 		}
 
-
 		public static Rect GetTextBounds(AppDrawingData data) {
 			Rect result = new Rect();
 			Paint.SetTypeface(FontManager.Current);
