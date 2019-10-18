@@ -14,6 +14,7 @@ namespace KappaLauncher.Misc {
 		public static float Scale { get; private set; }
 		public static int ActionBarHeight { get; private set; }
 		public static int StatusBarHeight { get; private set; }
+
 		public static int UsefulHeight {
 			get {
 				return Height - ActionBarHeight;
@@ -25,6 +26,7 @@ namespace KappaLauncher.Misc {
         public static int Dip2Px(float dip) {
             return (int) Math.Floor(dip * Scale);
         }
+
         public static void Init(Context context) {
             IWindowManager wm = context.GetSystemService(Context.WindowService).JavaCast<IWindowManager>();
 
