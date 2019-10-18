@@ -14,9 +14,9 @@ namespace KappaLauncher.Misc {
 			get { return CurrentFont != null ? CurrentFont.Typeface : Typeface.Default; }
 		}
 
-
 		private static AssetManager Assets;
 		private static string InternalStorage;
+
 		public static void Init(Context context) {
 			Assets = context.Assets;
 			InternalStorage = context.FilesDir.ToString();
@@ -41,6 +41,7 @@ namespace KappaLauncher.Misc {
 				Fonts.Add(font);
 			}
 		}
+
 		private static void LoadFromFolder() {
 			string path = System.IO.Path.Combine(InternalStorage, "Fonts");
 			string[] folder = Directory.GetFiles(path);
@@ -53,6 +54,7 @@ namespace KappaLauncher.Misc {
 				Fonts.Add(font);
 			}
 		}
+
 		private static void LoadCurrentFont() {
 			string name = (string) DataSaver.Read("CurrentFont");
 			CurrentFont = GetFontByName(name);
