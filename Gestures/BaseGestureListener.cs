@@ -2,7 +2,7 @@
 using Android.Views;
 
 namespace KappaLauncher.Gestures {
-	public class BaseGestureListener : Java.Lang.Object, View.IOnTouchListener {
+	public abstract class BaseGestureListener{
 
 		public bool IsGesture;
 		public long TouchStartTime;
@@ -18,7 +18,7 @@ namespace KappaLauncher.Gestures {
 					TouchStartTime = Java.Lang.JavaSystem.CurrentTimeMillis();
 					IsGesture = false;
 
-					OnTouchStart?.Invoke(view, e);
+					OnTouchStart(view, e);
 					return true;
 
 
@@ -26,15 +26,15 @@ namespace KappaLauncher.Gestures {
 					long time = Java.Lang.JavaSystem.CurrentTimeMillis() - TouchStartTime;
 					TouchStartTime = -1;
 
-					OnTouchEnd?.Invoke(view, e);
-					if(!IsGesture) OnClick?.Invoke(view, e, time);
+					OnTouchEnd(view, e);
+					if(!IsGesture) OnClick(view, e, time);
 					return true;
 
 
 				case MotionEventActions.Move:
 					IsGesture = true;
 
-					OnTouchMove?.Invoke(view, e);
+					OnMove(view, e);
 					return true;
 			}
 			return false;
@@ -42,16 +42,12 @@ namespace KappaLauncher.Gestures {
 
 
 
-		public delegate void TouchStartListener(View view, MotionEvent e);
-		public event TouchStartListener OnTouchStart;
+		public abstract void OnTouchStart(View view, MotionEvent e);
 
-		public delegate void TouchEndListener(View view, MotionEvent e);
-		public event TouchEndListener OnTouchEnd;
+		public abstract void OnTouchEnd(View view, MotionEvent e);
 
-		public delegate void TouchMoveListener(View view, MotionEvent e);
-		public event TouchMoveListener OnTouchMove;
+		public abstract void OnMove(View view, MotionEvent e);
 
-		public delegate void OnClickListener(View view, MotionEvent e, long time);
-		public event OnClickListener OnClick;
+		public abstract void OnClick(View view, MotionEvent e, long time);
 	}
 }
