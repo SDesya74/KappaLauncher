@@ -1,9 +1,4 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.Views;
 
 namespace KappaLauncher.Gestures {
 	class SwipeListener : BaseGestureListener {
@@ -22,7 +17,7 @@ namespace KappaLauncher.Gestures {
 
 
 		public enum Direction {
-			LEFT, RIGHT
+			Left, Right
 		}
 	}
 }
