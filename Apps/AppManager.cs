@@ -27,15 +27,17 @@ namespace KappaLauncher.Apps {
 		public static void Load(LoadingListener listener) {
 			Handler handler = new Handler();
 			Apps = (List<App>) DataSaver.Read("apps");
+
+			Intent loader = new Intent(Intent.ActionMain, null);
+			loader.AddCategory(Intent.CategoryLauncher);
+			List<ResolveInfo> resolve = Manager.QueryIntentActivities(loader, 0).ToList();
+			if(Apps?.Count != resolve.Count) Apps = null;
+
 			if(Apps == null) {
 				Apps = new List<App>();
 
 				Java.Lang.Thread Th;
 				Th = new Java.Lang.Thread(() => {
-					Intent loader = new Intent(Intent.ActionMain, null);
-					loader.AddCategory(Intent.CategoryLauncher);
-					List<ResolveInfo> resolve = Manager.QueryIntentActivities(loader, 0).ToList();
-
 					double progress = 0D;
 					resolve.ForEach(e => {
 						LoadAppFromResolve(e);
