@@ -28,10 +28,10 @@ namespace KappaLauncher.Apps {
 			Handler handler = new Handler();
 			Apps = (List<App>) DataSaver.Read("apps");
 			if(Apps == null) {
+				Apps = new List<App>();
+
 				Java.Lang.Thread Th;
 				Th = new Java.Lang.Thread(() => {
-					Apps = new List<App>();
-
 					Intent loader = new Intent(Intent.ActionMain, null);
 					loader.AddCategory(Intent.CategoryLauncher);
 					List<ResolveInfo> resolve = Manager.QueryIntentActivities(loader, 0).ToList();
@@ -42,12 +42,9 @@ namespace KappaLauncher.Apps {
 						progress++;
 						listener(progress / (double) resolve.Count);
 
-
 						try {
 							Java.Lang.Thread.Sleep(10L);
 						} catch { }
-
-
 
 					});
 				});
@@ -96,7 +93,7 @@ namespace KappaLauncher.Apps {
 
 
 
-
+		[Serializable]
 		public class App {
 			public string Key { get; private set; }
 			public string Package { get; private set; }
