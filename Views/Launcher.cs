@@ -50,13 +50,14 @@ namespace KappaLauncher.Views {
 
 				if (progress < 1) return;
 				Handler.Post(new Java.Lang.Runnable(() => {
+					Widgets.Clear();
+
 					AppGroupData data = new AppGroupData(AppManager.Apps);
 					Widgets.Add(data);
 
 					Build();
 					Parent.RemoveView(screen);
 				}));
-
 			});
 		}
 
@@ -65,6 +66,7 @@ namespace KappaLauncher.Views {
 		}
 
 		public static void Build() {
+			Main.RemoveAllViews();
 			Widgets.ForEach(widget => {
 				if (widget is AppGroupData) {
 					AppGroupView view = new AppGroupView(Context, (AppGroupData) widget);
