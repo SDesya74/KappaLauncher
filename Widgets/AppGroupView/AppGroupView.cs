@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-
-using Android.Content;
+﻿using Android.Content;
 using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using KappaLauncher.Apps;
-using KappaLauncher.Misc;
+using System.Collections.Generic;
 
 namespace KappaLauncher.Widgets {
-	partial class AppGroupView : View {
+	partial class AppGroupView : View, View.IOnTouchListener {
 		public AppGroupData Data { get; private set; }
 		
 
@@ -17,8 +14,15 @@ namespace KappaLauncher.Widgets {
 			Data = data;
 			Rows = new List<Row>();
 
-			SetOnTouchListener(new AppGroupTouchListener(this));
+			SetOnTouchListener(this);
 		}
+
+
+		public void OnAppClick(AppDrawingData data) {
+			AppManager.App app = AppManager.GetAppFromKey(data.Key);
+			AppManager.StartApp(app);
+		}
+
 
 
 
@@ -61,15 +65,5 @@ namespace KappaLauncher.Widgets {
 			});
 
 		}
-
-
-
-
-
-
-
-		
-
-
 	}
 }
