@@ -6,25 +6,28 @@ using Android.Content.PM;
 using KappaLauncher.Misc;
 using Android.OS;
 using System.Text;
+using KappaLauncher.Views;
+using System;
+using Android.Widget;
 
 namespace KappaLauncher.Apps {
-    public static class AppManager {
-        public static List<App> Apps { get; private set; }
-        private static PackageManager Manager;
+	public static class AppManager {
+		public static List<App> Apps { get; private set; }
+		private static PackageManager Manager;
 
-        public static void Init(Context context) {
-            Manager = context.PackageManager;
-            Apps = new List<App>();
-        }
+		public static void Init(Context context) {
+			Manager = context.PackageManager;
+			Apps = new List<App>();
+		}
 
 
 
-        public delegate void LoadingListener(double progress);
+		public delegate void LoadingListener(double progress);
 
-        public static void Load(LoadingListener listener) {
+		public static void Load(LoadingListener listener) {
 			Handler handler = new Handler();
-            Apps = (List<App>) DataSaver.Read("apps");
-			if (Apps == null) {
+			Apps = (List<App>) DataSaver.Read("apps");
+			if(Apps == null) {
 				Java.Lang.Thread Th;
 				Th = new Java.Lang.Thread(() => {
 					Apps = new List<App>();
@@ -41,7 +44,7 @@ namespace KappaLauncher.Apps {
 
 
 						try {
-							Java.Lang.Thread.Sleep(10L); 
+							Java.Lang.Thread.Sleep(10L);
 						} catch { }
 
 
@@ -50,26 +53,42 @@ namespace KappaLauncher.Apps {
 				});
 				Th.Start();
 			} else listener(1);
-        }
+		}
 
-        public static void LoadAppFromResolve(ResolveInfo e) {
-            string package = e.ActivityInfo.PackageName;
-            string activity = e.ActivityInfo.Name;
-            string name = e.LoadLabel(Manager);
+		public static void LoadAppFromResolve(ResolveInfo e) {
+			string package = e.ActivityInfo.PackageName;
+			string activity = e.ActivityInfo.Name;
+			string name = e.LoadLabel(Manager);
 
-            long installTime = Manager.GetPackageInfo(package, 0).FirstInstallTime;
+			long installTime = Manager.GetPackageInfo(package, 0).FirstInstallTime;
 
-            App app = new App(package, activity, name, installTime);
-            Apps.Add(app);
-        }
+			App app = new App(package, activity, name, installTime);
+			Apps.Add(app);
+		}
 
-		public static App GetByKey(string key) {
+		public static App GetAppFromKey(string key) {
 			return Apps.FirstOrDefault(e => e.Key == key);
 		}
 
-        public static void Save() {
-            DataSaver.Save("apps", Apps);
-        }
+		public static void StartApp(App app) {
+			using(Intent intent = new Intent(Intent.ActionMain, null)) {
+				intent.AddCategory(Intent.CategoryLauncher);
+				intent.SetComponent(new ComponentName(app.Package, app.Activity));
+				intent.SetFlags(ActivityFlags.NewTask);
+
+				try {
+					app.Popularity++;
+					Launcher.Context.StartActivity(intent);
+					Save();
+				} catch(ActivityNotFoundException) {
+					Toast.MakeText(Launcher.Context, "Activity Not Found", ToastLength.Short).Show();
+				}
+			}
+		}
+
+		public static void Save() {
+			DataSaver.Save("apps", Apps);
+		}
 
 
 
@@ -78,18 +97,18 @@ namespace KappaLauncher.Apps {
 
 
 
-        public class App {
+		public class App {
 			public string Key { get; private set; }
-            private string Package { get; set; }
-            public string Activity { get; private set; }
-            public string Name { get; private set; }
-            public long InstallTime { get; private set; }
+			public string Package { get; private set; }
+			public string Activity { get; private set; }
+			public string Name { get; private set; }
+			public long InstallTime { get; private set; }
 
-            public App(string package, string activity, string name, long instllTime) {
-                Package = package;
-                Activity = activity;
-                Name = name;
-                InstallTime = instllTime;
+			public App(string package, string activity, string name, long instllTime) {
+				Package = package;
+				Activity = activity;
+				Name = name;
+				InstallTime = instllTime;
 
 				/*var crypt = new System.Security.Cryptography.SHA256Managed();
 				var hash = new StringBuilder();
@@ -98,8 +117,8 @@ namespace KappaLauncher.Apps {
 				Key = Package + ":" + Activity; // hash.ToString();
 			}
 
-            public int Popularity { get; set; }
-            public bool Hidden { get; set; }
-        }
-    }
+			public int Popularity { get; set; }
+			public bool Hidden { get; set; }
+		}
+	}
 }
