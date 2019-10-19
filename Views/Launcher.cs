@@ -72,13 +72,5 @@ namespace KappaLauncher.Views {
 				}
 			});
 		}
-
-
-
-
-
-
-
-		public static void Message(string text) => Toast.MakeText(Context, text, ToastLength.Short).Show();
 	}
 }
