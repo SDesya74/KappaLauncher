@@ -21,6 +21,7 @@ namespace KappaLauncher.Widgets {
 		public void OnAppClick(AppDrawingData data) {
 			AppManager.App app = AppManager.GetAppFromKey(data.Key);
 			AppManager.StartApp(app);
+			this.RequestLayout();
 		}
 
 
