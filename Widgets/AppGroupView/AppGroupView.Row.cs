@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Android.Graphics;
 
-using Android.App;
-using Android.Content;
-using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using KappaLauncher.Apps;
+
+using System;
+using System.Collections.Generic;
 
 namespace KappaLauncher.Widgets {
 	partial class AppGroupView {
@@ -20,7 +13,7 @@ namespace KappaLauncher.Widgets {
 			float y = touch.Y;
 			foreach(Row row in Rows) {
 				if(y < row.Height) return row;
-				y -= row.Height;
+				y -= row.Height + Data.RowMargin;
 			}
 			return null;
 		}
@@ -39,6 +32,17 @@ namespace KappaLauncher.Widgets {
 
 
 
+			public AppDrawingData GetAppByCoords(PointF touch) {
+				float x = touch.X;
+				foreach(AppDrawingData app in Elements) {
+					if(x < app.BackBounds.Width()) return app;
+					x -= app.BackBounds.Width() + Parent.Data.RowMargin;
+				}
+				return null;
+			}
+
+
+
 			public Row(AppGroupView view) {
 				Elements = new List<AppDrawingData>();
 				Parent = view;
@@ -53,15 +57,6 @@ namespace KappaLauncher.Widgets {
 				Elements.Add(data);
 				Width += data.BackBounds.Width() + Parent.Data.ColumnMargin;
 				Height = Math.Max(Height, data.BackBounds.Height());
-			}
-
-			public Row GetRowByCoords(PointF touch) {
-				float y = touch.Y;
-				foreach(Row row in Rows) {
-					if(y < row.Height) return row;
-					y -= row.Height;
-				}
-				return null;
 			}
 
 			public void Draw(Canvas canvas, int y) {
