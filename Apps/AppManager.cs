@@ -20,7 +20,7 @@ namespace KappaLauncher.Apps {
 			Apps = new List<App>();
 		}
 
-
+		 
 
 		public delegate void LoadingListener(double progress);
 
