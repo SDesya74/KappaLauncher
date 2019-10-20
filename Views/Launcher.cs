@@ -26,6 +26,8 @@ namespace KappaLauncher.Views {
 			Parent = new FrameLayout(Context);
 
 			Scroll = new ScrollView(Context);
+			Scroll.OverScrollMode = OverScrollMode.Never;
+			Scroll.VerticalScrollBarEnabled = false;
 			Parent.AddView(Scroll);
 
 			Main = new LinearLayout(Context);
@@ -69,7 +71,7 @@ namespace KappaLauncher.Views {
 			Main.RemoveAllViews();
 			Widgets.ForEach(widget => {
 				if (widget is AppGroupData) {
-					AppGroupView view = new AppGroupView(Context, (AppGroupData) widget);
+					AppGroupWidget view = new AppGroupWidget(Context, (AppGroupData) widget);
 					Main.AddView(view);
 				}
 			});
