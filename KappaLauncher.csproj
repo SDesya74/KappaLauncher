@@ -78,10 +78,10 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\LauncherWidgets.cs" />
-    <Compile Include="Widgets\AppGroupView\AppGroupData.cs" />
-    <Compile Include="Widgets\AppGroupView\AppGroup.OnTouchListener.cs" />
-    <Compile Include="Widgets\AppGroupView\AppGroupView.cs" />
-    <Compile Include="Widgets\AppGroupView\AppGroupView.Row.cs" />
+    <Compile Include="Widgets\AppGroupWidget\AppGroupData.cs" />
+    <Compile Include="Widgets\AppGroupWidget\AppGroupWidget.OnTouchListener.cs" />
+    <Compile Include="Widgets\AppGroupWidget\AppGroupWidget.cs" />
+    <Compile Include="Widgets\AppGroupWidget\AppGroupWidget.Row.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\TeX Gyre Adventor.ttf" />
@@ -120,7 +120,10 @@
     <PackageReference Include="Xamarin.Android.Support.CustomTabs" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Widgets\ClockWidget\" />
+    <Folder Include="Widgets\PanelWidget\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.
