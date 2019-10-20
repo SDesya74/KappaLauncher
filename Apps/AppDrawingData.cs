@@ -54,6 +54,8 @@ namespace KappaLauncher.Apps {
 			BackBounds.Top -= Padding.Y;
 			BackBounds.Bottom += Padding.Y;
 		}
+		public void Invalidate() => CalcBounds();
+		public void InvalidatePopularity() => Popularity = AppManager.GetAppFromKey(Key)?.Popularity ?? 0;
 
 		public enum Style {
 			Stroke, Fill
