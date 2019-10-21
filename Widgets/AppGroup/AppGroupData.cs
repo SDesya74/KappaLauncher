@@ -5,7 +5,7 @@ using KappaLauncher.Apps;
 using KappaLauncher.Misc;
 using KappaLauncher.Views;
 
-namespace KappaLauncher.Widgets {
+namespace KappaLauncher.Widgets.AppGroup {
 
 	[Serializable]
 	class AppGroupData : Launcher.WidgetData{
