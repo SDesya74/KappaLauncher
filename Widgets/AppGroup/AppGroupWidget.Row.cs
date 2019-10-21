@@ -5,7 +5,7 @@ using KappaLauncher.Apps;
 using System;
 using System.Collections.Generic;
 
-namespace KappaLauncher.Widgets {
+namespace KappaLauncher.Widgets.AppGroup {
 	partial class AppGroupWidget {
 		public List<Row> Rows { get; private set; }
 
