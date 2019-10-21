@@ -3,10 +3,11 @@ using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 using KappaLauncher.Apps;
+using KappaLauncher.Views;
 using System.Collections.Generic;
 
-namespace KappaLauncher.Widgets {
-	partial class AppGroupWidget : View, View.IOnTouchListener {
+namespace KappaLauncher.Widgets.AppGroup {
+	partial class AppGroupWidget : Widget, View.IOnTouchListener {
 		public AppGroupData Data { get; private set; }
 		
 
