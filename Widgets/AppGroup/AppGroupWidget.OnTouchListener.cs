@@ -30,12 +30,20 @@ namespace KappaLauncher.Widgets.AppGroup {
 
 
 		public void OnClick(MotionEvent e, long time) {
-			if(time > 300) return;
+			if(time > 300) {
+				OnLongClick(e, time);
+				return;
+			}
 			using(PointF touch = new PointF(e.GetX(), e.GetY())) {
 				Row row = GetRowByCoords(touch);
 				AppDrawingData app = row?.GetAppByCoords(touch);
 				if(app != null) OnAppClick(app);
 			}
+		}
+
+
+		public void OnLongClick(MotionEvent e, long time) {
+
 		}
 	}
 }
