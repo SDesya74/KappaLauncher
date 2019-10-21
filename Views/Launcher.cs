@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
@@ -8,8 +6,9 @@ using Android.Widget;
 
 using KappaLauncher.Apps;
 using KappaLauncher.Misc;
-using KappaLauncher.Views;
-using KappaLauncher.Widgets;
+using KappaLauncher.Widgets.AppGroup;
+
+using System.Collections.Generic;
 
 namespace KappaLauncher.Views {
 	public static partial class Launcher {
@@ -76,11 +75,6 @@ namespace KappaLauncher.Views {
 				}
 			});
 		}
-
-
-
-
-
 
 
 		public static void Message(string text) => Toast.MakeText(Context, text, ToastLength.Short).Show();
