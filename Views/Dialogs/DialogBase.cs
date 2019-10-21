@@ -21,7 +21,6 @@ namespace KappaLauncher.Views.Dialogs {
 
 		public abstract View OnCreate(Context context);
 
-
 		public bool IsShowing {
 			get {
 				return (bool) Window?.IsShowing;
