@@ -2,7 +2,7 @@
 using Android.Views;
 using KappaLauncher.Apps;
 
-namespace KappaLauncher.Widgets {
+namespace KappaLauncher.Widgets.AppGroup {
 	partial class AppGroupWidget {
 	
 		private bool IsClick = true;
